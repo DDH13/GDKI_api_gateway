@@ -18,3 +18,15 @@ public type UpdateStatusIdentityRequest record {|
     string status;
 |};
 
+public type NewAddressRequest record {
+    string address;
+    string NIC;
+    string gramaDivision;
+};
+
+public type UpdateStatusAddressRequest record {
+    string grama_nic;
+    string request_id;
+    string status;
+};
+
