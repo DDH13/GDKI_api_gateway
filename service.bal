@@ -5,8 +5,6 @@ configurable string police_url = ?;
 configurable string address_url = ?;
 configurable string identity_url = ?;
 
-http:Client PoliceClient = check new (police_url);
-
 service / on new http:Listener(9090) {
 
     //Identity microservice
@@ -39,7 +37,7 @@ service / on new http:Listener(9090) {
         else {
             return response;
         }
-    }   
+    }
     isolated resource function post identity/requests(NewIdentityRequest request) returns http:Response|error {
         http:Client IdentityClient = check new (identity_url + "/requests");
         http:Response|error response = check IdentityClient->/.post(request);
@@ -60,7 +58,7 @@ service / on new http:Listener(9090) {
         else {
             return response;
         }
-    }   
+    }
 
     isolated resource function delete identity/requests/[string id]() returns http:Response|error {
         http:Client IdentityClient = check new (identity_url + "/requests/" + id);
@@ -137,8 +135,27 @@ service / on new http:Listener(9090) {
         }
     }
 
+    //Police microservice
+    isolated resource function get police/requests/[string nic]() returns http:Response|error {
+        http:Client PoliceClient = check new (police_url);
+        http:Response|error response = check PoliceClient->/requests/[nic].get();
+        if (response is http:Response) {
+            return response;
+        }
+        else {
+            return response;
+        }
+    }
 
-
+    isolated resource function post police/requests/[string nic]() returns http:Response|error {
+        http:Client PoliceClient = check new (police_url);
+        http:Response|error response = check PoliceClient->/requests/[nic].post({});
+        if (response is http:Response) {
+            return response;
+        }
+        else {
+            return response;
+        }
+    }
 
 }
-
