@@ -8,7 +8,7 @@ configurable string identity_url = ?;
 service / on new http:Listener(9090) {
 
     //Identity microservice
-    isolated resource function get identity/requests(string gdid = "", string status = "", int rlimit = -1, int offset = -1) returns http:Response|error {
+    isolated resource function get identity/requests(string gdid = "", string status = "", int rlimit = 10000, int offset = 0) returns http:Response|error {
         http:Client IdentityClient = check new (identity_url + "/requests");
         http:Response|error response = check IdentityClient->/.get(gdid = gdid, status = status, rlimit = rlimit, offset = offset);
         if (response is http:Response) {
@@ -72,7 +72,7 @@ service / on new http:Listener(9090) {
     }
 
     //Address microservice
-    isolated resource function get address/requests(string gdid = "", string status = "", int rlimit = -1, int offset = -1) returns http:Response|error {
+    isolated resource function get address/requests(string gdid = "", string status = "", int rlimit = 10000, int offset = 0) returns http:Response|error {
         http:Client AddressClient = check new (address_url + "/requests");
         http:Response|error response = check AddressClient->/.get(gdid = gdid, status = status, rlimit = rlimit, offset = offset);
         if (response is http:Response) {
