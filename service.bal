@@ -156,7 +156,18 @@ service / on new http:Listener(9090) {
     }
 
     //Police microservice
-    isolated resource function get police/requests/[string nic]() returns http:Response|error {
+
+    isolated resource function get police/requests/[string id]() returns http:Response|error {
+        http:Client PoliceClient = check new (police_url+"/police");
+        http:Response|error response = check PoliceClient->/requests/[id].get();
+        if (response is http:Response) {
+            return response;
+        }
+        else {
+            return response;
+        }
+    }
+    isolated resource function get police/requests/nic/[string nic]() returns http:Response|error {
         http:Client PoliceClient = check new (police_url+"/police");
         http:Response|error response = check PoliceClient->/requests/[nic].get();
         if (response is http:Response) {
