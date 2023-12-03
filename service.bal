@@ -54,6 +54,16 @@ service / on new http:Listener(9090) {
             return response;
         }
     }
+    isolated resource function get identity/requests/latest/[string nic]() returns http:Response|error {
+        http:Client IdentityClient = check new (identity_url + "/identity/requests/latest/" + nic);
+        http:Response|error response = check IdentityClient->/.get();
+        if (response is http:Response) {
+            return response;
+        }
+        else {
+            return response;
+        }
+    }
     isolated resource function post identity/requests(NewIdentityRequest request) returns http:Response|error {
         http:Client IdentityClient = check new (identity_url + "/identity/requests");
         http:Response|error response = check IdentityClient->/.post(request);
