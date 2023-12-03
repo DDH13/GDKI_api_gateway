@@ -158,4 +158,15 @@ service / on new http:Listener(9090) {
         }
     }
 
+    isolated resource function get gramadivisions() returns http:Response|error {
+        http:Client IdentityClient = check new (identity_url);
+        http:Response|error response = check IdentityClient->/identity/gramadivisions.get();
+        if (response is http:Response) {
+            return response;
+        }
+        else {
+            return response;
+        }
+    }
+
 }
