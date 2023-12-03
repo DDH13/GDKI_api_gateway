@@ -9,7 +9,7 @@ service / on new http:Listener(9090) {
 
     //Identity microservice
     isolated resource function get identity/requests(string gdid = "", string status = "", int rlimit = 10000, int offset = 0) returns http:Response|error {
-        http:Client IdentityClient = check new (identity_url + "identity/requests");
+        http:Client IdentityClient = check new (identity_url + "/identity/requests");
         http:Response|error response = check IdentityClient->/.get(gdid = gdid, status = status, rlimit = rlimit, offset = offset);
         if (response is http:Response) {
             return response;
