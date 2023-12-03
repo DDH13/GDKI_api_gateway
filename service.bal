@@ -5,6 +5,12 @@ configurable string police_url = ?;
 configurable string address_url = ?;
 configurable string identity_url = ?;
 
+@http:ServiceConfig {
+    cors: {
+       allowOrigins: ["*"]
+    }
+}
+
 service / on new http:Listener(9090) {
 
     //Identity microservice
