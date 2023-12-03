@@ -13,7 +13,7 @@ public type NewIdentityRequest record {|
 |};
 
 public type UpdateStatusIdentityRequest record {|
-    string grama_nic;
+    string grama_name;
     string request_id;
     string status;
 |};
@@ -25,7 +25,7 @@ public type NewAddressRequest record {
 };
 
 public type UpdateStatusAddressRequest record {
-    string grama_nic;
+    string grama_name;
     string request_id;
     string status;
 };
