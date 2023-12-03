@@ -28,6 +28,16 @@ service / on new http:Listener(9090) {
             return response;
         }
     }
+    isolated resource function get identity/requests/nic/[string nic]() returns http:Response|error {
+        http:Client IdentityClient = check new (identity_url + "/identity/requests/nic/" + nic);
+        http:Response|error response = check IdentityClient->/.get();
+        if (response is http:Response) {
+            return response;
+        }
+        else {
+            return response;
+        }
+    }
     isolated resource function get identity/requests/validate/[string nic]() returns http:Response|error {
         http:Client IdentityClient = check new (identity_url + "/identity/requests/validate/" + nic);
         http:Response|error response = check IdentityClient->/.get();
@@ -94,6 +104,16 @@ service / on new http:Listener(9090) {
     }
     isolated resource function get address/requests/validate/[string nic]() returns http:Response|error {
         http:Client AddressClient = check new (address_url + "/address/requests/validate/" + nic);
+        http:Response|error response = check AddressClient->/.get();
+        if (response is http:Response) {
+            return response;
+        }
+        else {
+            return response;
+        }
+    }
+    isolated resource function get address/requests/nic/[string nic]() returns http:Response|error {
+        http:Client AddressClient = check new (address_url + "/address/requests/nic/" + nic);
         http:Response|error response = check AddressClient->/.get();
         if (response is http:Response) {
             return response;
