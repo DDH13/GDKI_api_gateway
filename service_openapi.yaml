@@ -1,0 +1,550 @@
+openapi: 3.0.1
+info:
+  title: Service Openapi Yaml
+  version: 0.1.0
+servers:
+- url: "{server}:{port}/"
+  variables:
+    server:
+      default: http://localhost
+    port:
+      default: "9090"
+paths:
+  /identity/requests:
+    get:
+      operationId: getIdentityRequests
+      parameters:
+      - name: gdid
+        in: query
+        schema:
+          type: string
+          default: ""
+      - name: status
+        in: query
+        schema:
+          type: string
+          default: ""
+      - name: rlimit
+        in: query
+        schema:
+          type: integer
+          format: int64
+          default: 10000
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          format: int64
+          default: 0
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+    put:
+      operationId: putIdentityRequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStatusIdentityRequest'
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+    post:
+      operationId: postIdentityRequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewIdentityRequest'
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+  /identity/requests/{id}:
+    get:
+      operationId: getIdentityRequestsId
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+    delete:
+      operationId: deleteIdentityRequestsId
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+  /identity/requests/nic/{nic}:
+    get:
+      operationId: getIdentityRequestsNicNic
+      parameters:
+      - name: nic
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+  /identity/requests/validate/{nic}:
+    get:
+      operationId: getIdentityRequestsValidateNic
+      parameters:
+      - name: nic
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+  /identity/requests/latest/{nic}:
+    get:
+      operationId: getIdentityRequestsLatestNic
+      parameters:
+      - name: nic
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+  /address/requests:
+    get:
+      operationId: getAddressRequests
+      parameters:
+      - name: gdid
+        in: query
+        schema:
+          type: string
+          default: ""
+      - name: status
+        in: query
+        schema:
+          type: string
+          default: ""
+      - name: rlimit
+        in: query
+        schema:
+          type: integer
+          format: int64
+          default: 10000
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          format: int64
+          default: 0
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+    put:
+      operationId: putAddressRequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStatusAddressRequest'
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+    post:
+      operationId: postAddressRequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewAddressRequest'
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+  /address/requests/{id}:
+    get:
+      operationId: getAddressRequestsId
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+    delete:
+      operationId: deleteAddressRequestsId
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+  /address/requests/validate/{nic}:
+    get:
+      operationId: getAddressRequestsValidateNic
+      parameters:
+      - name: nic
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+  /address/requests/nic/{nic}:
+    get:
+      operationId: getAddressRequestsNicNic
+      parameters:
+      - name: nic
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+  /police/requests/{id}:
+    get:
+      operationId: getPoliceRequestsId
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+  /police/requests/nic/{nic}:
+    get:
+      operationId: getPoliceRequestsNicNic
+      parameters:
+      - name: nic
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+  /police/requests/{nic}:
+    post:
+      operationId: postPoliceRequestsNic
+      parameters:
+      - name: nic
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+  /gramadivisions:
+    get:
+      operationId: getGramadivisions
+      responses:
+        default:
+          description: Any Response
+          content:
+            '*/*':
+              schema:
+                description: Any type of entity body
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorPayload'
+components:
+  schemas:
+    ErrorPayload:
+      type: object
+      properties:
+        reason:
+          type: string
+          description: Reason phrase
+        path:
+          type: string
+          description: Request path
+        method:
+          type: string
+          description: Method type of the request
+        message:
+          type: string
+          description: Error message
+        timestamp:
+          type: string
+          description: Timestamp of the error
+        status:
+          type: integer
+          description: Relevant HTTP status code
+          format: int32
+    UpdateStatusIdentityRequest:
+      required:
+      - grama_name
+      - request_id
+      - status
+      type: object
+      properties:
+        grama_name:
+          type: string
+        request_id:
+          type: string
+        status:
+          type: string
+    Utc:
+      type: array
+      items:
+        oneOf:
+        - type: integer
+          format: int64
+        - type: number
+          format: double
+    NewAddressRequest:
+      required:
+      - NIC
+      - address
+      - gramaDivision
+      type: object
+      properties:
+        address:
+          type: string
+        NIC:
+          type: string
+        gramaDivision:
+          type: string
+    NewIdentityRequest:
+      required:
+      - DOB
+      - NIC
+      - address
+      - contact_num
+      - email
+      - fullname
+      - gender
+      - gramasevaka_division
+      - initials_fullname
+      type: object
+      properties:
+        initials_fullname:
+          type: string
+        fullname:
+          type: string
+        NIC:
+          type: string
+        gender:
+          type: string
+        contact_num:
+          type: string
+        email:
+          type: string
+        address:
+          type: string
+        DOB:
+          $ref: '#/components/schemas/Utc'
+        gramasevaka_division:
+          type: string
+    UpdateStatusAddressRequest:
+      required:
+      - grama_name
+      - request_id
+      - status
+      type: object
+      properties:
+        grama_name:
+          type: string
+        request_id:
+          type: string
+        status:
+          type: string
