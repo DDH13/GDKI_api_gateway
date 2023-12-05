@@ -23,6 +23,12 @@ public type NewAddressRequest record {
     string NIC;
     string gramaDivision;
 };
+public type NewPoliceRequest record {
+    string gid;
+    string reason;
+    string nic;
+};
+
 
 public type UpdateStatusAddressRequest record {
     string grama_name;

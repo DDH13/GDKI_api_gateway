@@ -194,9 +194,9 @@ service / on new http:Listener(9090) {
         }
     }
 
-    isolated resource function post police/requests/[string nic]() returns http:Response|error {
+    isolated resource function post police/requests(NewPoliceRequest request) returns http:Response|error {
         http:Client PoliceClient = check new (police_url+"/police");
-        http:Response|error response = check PoliceClient->/requests/[nic].post({});
+        http:Response|error response = check PoliceClient->/requests.post(request);
         if (response is http:Response) {
             return response;
         }
