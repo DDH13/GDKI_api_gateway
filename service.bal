@@ -7,7 +7,7 @@ configurable string identity_url = ?;
 
 @http:ServiceConfig {
     cors: {
-       allowOrigins: ["*"]
+        allowOrigins: ["*"]
     }
 }
 
@@ -138,6 +138,16 @@ service / on new http:Listener(9090) {
             return response;
         }
     }
+    isolated resource function get address/requests/latest/[string nic]() returns http:Response|error {
+        http:Client AddressClient = check new (address_url + "/address/requests/latest/" + nic);
+        http:Response|error response = check AddressClient->/.get();
+        if (response is http:Response) {
+            return response;
+        }
+        else {
+            return response;
+        }
+    }
     isolated resource function post address/requests(NewAddressRequest request) returns http:Response|error {
         http:Client AddressClient = check new (address_url + "/address/requests");
         http:Response|error response = check AddressClient->/.post(request);
@@ -174,7 +184,7 @@ service / on new http:Listener(9090) {
     //Police microservice
 
     isolated resource function get police/requests(string status = "", string gid = "", int rlimit = 10000, int offset = 0) returns http:Response|error {
-        http:Client PoliceClient = check new (police_url+"/police");
+        http:Client PoliceClient = check new (police_url + "/police");
         http:Response|error response = check PoliceClient->/requests.get(status = status, gid = gid, rlimit = rlimit, offset = offset);
         if (response is http:Response) {
             return response;
@@ -184,7 +194,7 @@ service / on new http:Listener(9090) {
         }
     }
     isolated resource function delete police/requests/[string id]() returns http:Response|error {
-        http:Client PoliceClient = check new (police_url+"/police");
+        http:Client PoliceClient = check new (police_url + "/police");
         http:Response|error response = check PoliceClient->/requests/[id].delete();
         if (response is http:Response) {
             return response;
@@ -194,7 +204,7 @@ service / on new http:Listener(9090) {
         }
     }
     isolated resource function get police/requests/[string id]() returns http:Response|error {
-        http:Client PoliceClient = check new (police_url+"/police");
+        http:Client PoliceClient = check new (police_url + "/police");
         http:Response|error response = check PoliceClient->/requests/[id].get();
         if (response is http:Response) {
             return response;
@@ -204,7 +214,7 @@ service / on new http:Listener(9090) {
         }
     }
     isolated resource function get police/requests/nic/[string nic]() returns http:Response|error {
-        http:Client PoliceClient = check new (police_url+"/police");
+        http:Client PoliceClient = check new (police_url + "/police");
         http:Response|error response = check PoliceClient->/requests/[nic].get();
         if (response is http:Response) {
             return response;
@@ -215,7 +225,7 @@ service / on new http:Listener(9090) {
     }
 
     isolated resource function post police/requests(NewPoliceRequest request) returns http:Response|error {
-        http:Client PoliceClient = check new (police_url+"/police");
+        http:Client PoliceClient = check new (police_url + "/police");
         http:Response|error response = check PoliceClient->/requests.post(request);
         if (response is http:Response) {
             return response;
