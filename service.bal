@@ -215,7 +215,7 @@ service / on new http:Listener(9090) {
     }
     isolated resource function get police/requests/nic/[string nic]() returns http:Response|error {
         http:Client PoliceClient = check new (police_url + "/police");
-        http:Response|error response = check PoliceClient->/requests/[nic].get();
+        http:Response|error response = check PoliceClient->/requests/nic/[nic].get();
         if (response is http:Response) {
             return response;
         }
