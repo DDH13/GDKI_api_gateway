@@ -251,7 +251,7 @@ service / on new http:Listener(9090) {
     //Slack microservice
     isolated resource function post slack/sendNotification() returns http:Response|error {
         http:Client SlackClient = check new (slack_url);
-        http:Response|error response = check SlackClient->/notification/sendNotification.post();
+        http:Response|error response = check SlackClient->/notification/sendNotification.post({});
         if (response is http:Response) {
             return response;
         }
