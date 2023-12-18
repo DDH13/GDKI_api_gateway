@@ -4,6 +4,7 @@ import ballerina/io as _;
 configurable string police_url = ?;
 configurable string address_url = ?;
 configurable string identity_url = ?;
+configurable string slack_url = ?;
 
 @http:ServiceConfig {
     cors: {
